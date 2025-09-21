@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'pages/activities_page.dart';
+import 'pages/budget_page.dart';
+import 'pages/weather_page.dart';
+import 'pages/summary_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -30,11 +34,12 @@ class _HomeState extends State<_Home> {
   int _index = 0;
 
   static const _titles = ['פעילויות', 'תקציב', 'מזג אוויר', 'סיכום'];
+
   static const _screens = <Widget>[
-    Center(child: Text('מסך פעילויות')),
-    Center(child: Text('מסך תקציב')),
-    Center(child: Text('מסך מזג אוויר')),
-    Center(child: Text('מסך סיכום')),
+    ActivitiesPage(),
+    BudgetPage(),
+    WeatherPage(),
+    SummaryPage(),
   ];
 
   @override
@@ -57,12 +62,11 @@ class _HomeState extends State<_Home> {
     );
   }
 
-  // כפתור + רק בטאבים הרלוונטיים (למשל פעילויות/תקציב)
+  // כפתור + רק בטאבים הרלוונטיים (פעילויות/תקציב כרגע)
   Widget? _fabForTab(int index) {
     if (index == 0 || index == 1) {
       return FloatingActionButton(
         onPressed: () {
-          // כאן בעתיד תפתח דיאלוג הוספה
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text('לחצת על + ב"${_titles[index]}"')),
           );
